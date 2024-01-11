@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const URI= MONGO_LOCAL_URI='mongodb://mongo:27017/test-app'
+const URI='mongodb://' + process.env.MONGO_HOST + ':' + process.env.MONGO_PORT + '/test'
 
 async function main() {
     await connect();

@@ -6,6 +6,7 @@ on: [push]
 jobs:
   mongo-service-container-test-job:
     runs-on: ubuntu-latest
+    environment: TEST
     container: node:21-alpine3.19
     services:
       mongo:
@@ -26,3 +27,8 @@ jobs:
 
       - name: Test connection with client
         run: node client.js
+        env:
+            MONGO_HOST: ${{ vars.MONGO_HOST }}
+            MONGO_PORT: ${{ vars.MONGO_PORT }}
+
+
