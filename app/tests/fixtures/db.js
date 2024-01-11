@@ -5,6 +5,4 @@ const clearDatabase = async () => {
     await Contact.deleteMany();
 }
 
-module.exports = {
-    clearDatabase
-}
+module.exports = clearDatabase
