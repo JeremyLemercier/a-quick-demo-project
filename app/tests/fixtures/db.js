@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
 const Contact = require('../../src/models/contact');
 const env = process.env.ENV;
-const host = process.env.MONGO_HOST ? env == 'ci' : process.env.MONGO_LOCAL_HOST
-const port = process.env.MONGO_PORT ? env == 'ci' : process.env.MONGO_LOCAL_PORT
+const host = (env == 'ci') ? process.env.MONGO_HOST : process.env.MONGO_LOCAL_HOST
+const port = (env == 'ci') ? process.env.MONGO_PORT : process.env.MONGO_LOCAL_PORT
 
+console.log('[LOG - db.js - Value of env var MONGO_HOST : ' + host)
+console.log('[LOG - db.js - Value of env var MONGO_PORT : ' + port)
 
 function setMongoURI() {
     const uri = 'mongodb://'+ host + ':' + port + '/my-app';
