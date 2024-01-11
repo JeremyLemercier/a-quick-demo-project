@@ -26,14 +26,14 @@ function disconnect() {
 
 function sleep() {
     return new Promise(resolve => {
-        for (let i = 5; i >= 1; i--) {
+        for (let i = 3; i >= 1; i--) {
             setTimeout(() => {
                 console.log('alarm in :' + i);
                 if (i === 1) {
                     console.log('Wake up!');
                     resolve();
                 }
-            }, (5 - i) * 1000);
+            }, (3 - i) * 1000);
         }
     });
 }

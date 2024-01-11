@@ -4,7 +4,7 @@ run-name: CI for ${{ github.repository }}
 on: [push]
 
 jobs:
-  mongo-service-container-test-job:
+  job_Unit-Tests:
     runs-on: ubuntu-latest
     environment: TEST
     container: node:21-alpine3.19
@@ -13,11 +13,7 @@ jobs:
         image: mongo
         ports:
           - 27017:27017
-        # options: >-
-        #   --health-cmd "mongo --eval 'db.runCommand("ping").ok'"
-        #   --health-interval 10s
-        #   --health-timeout 5s
-        #   --health-retries 5
+
     steps:
       - name: Checkout Source Code
         uses: actions/checkout@v4
@@ -25,10 +21,19 @@ jobs:
       - name: Install mongoose
         run: npm install mongoose
 
-      - name: Test connection with client
+      - name: Test Mongo Service with client
         run: node client.js
         env:
             MONGO_HOST: ${{ vars.MONGO_HOST }}
             MONGO_PORT: ${{ vars.MONGO_PORT }}
 
+      - name: Install all dependencies
+        run: npm ci
+
+      - name: Roll-up the Unit Tests
+        run: npm run ci-test
+        env:
+            ENV: ci
+            MONGO_HOST: ${{ vars.MONGO_HOST }}
+            MONGO_PORT: ${{ vars.MONGO_PORT }}
 

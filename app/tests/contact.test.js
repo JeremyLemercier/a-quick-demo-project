@@ -1,11 +1,11 @@
 const request = require('supertest');
 const app = require('../src/app');
 const Contact = require('../src/models/contact');
-const { connect, disconnect } = require('../src/db/mongoose');
+const { connect, disconnect, MONGO_URI } = require('../src/db/mongoose');
 const clearDatabase = require('./fixtures/db');
 
 beforeAll(async () => {
-    await connect();
+    await connect(MONGO_URI);
     await clearDatabase();
 }, 10000);
 
