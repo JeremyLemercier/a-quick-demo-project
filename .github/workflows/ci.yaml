@@ -31,7 +31,7 @@ jobs:
         run: npm ci
 
       - name: Roll-up the Unit Tests
-        run: npm run ci-test
+        run: npm test
         env:
             ENV: ci
             MONGO_HOST: ${{ vars.MONGO_HOST }}
