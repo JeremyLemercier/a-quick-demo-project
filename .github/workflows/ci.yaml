@@ -12,14 +12,17 @@ jobs:
         image: mongo
         ports:
           - 27017:27017
-        options: >-
-          --health-cmd "mongo --eval 'db.runCommand("ping").ok'"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+        # options: >-
+        #   --health-cmd "mongo --eval 'db.runCommand("ping").ok'"
+        #   --health-interval 10s
+        #   --health-timeout 5s
+        #   --health-retries 5
     steps:
       - name: Checkout Source Code
         uses: actions/checkout@v4
 
-      - name: Print a Welcome message
-        run: echo "Welcome in GitHub Actions!"
+      - name: Install mongoose
+        run: npm install mongoose
+
+      - name: Test connection with client
+        run: node client.js
