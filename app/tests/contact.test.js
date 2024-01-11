@@ -4,7 +4,11 @@ const Contact = require('../src/models/contact');
 const { connect, disconnect, MONGO_URI } = require('../src/db/mongoose');
 const clearDatabase = require('./fixtures/db');
 
+console.log('[LOG01 - contact.test.js] current URI : ' + MONGO_URI);
+
+
 beforeAll(async () => {
+    console.log('[LOG02 - contact.test.js] current URI : ' + MONGO_URI);
     await connect(MONGO_URI);
     await clearDatabase();
 }, 10000);
