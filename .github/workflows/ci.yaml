@@ -1,0 +1,14 @@
+name: CI workflow
+run-name: CI for ${{ github.repository }}
+
+on: [push]
+
+jobs:
+  greeting-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+        
+      - name: Print a Welcome message
+        run: echo "Welcome in GitHub Actions!"

@@ -54,6 +54,27 @@ contactSchema.plugin(uniqueValidation, {
     defaultMessage: 'Error, expected {PATH} to be unique.'
 });
 
+// contactSchema.statics is for methods on the actual uppercase C contact model
+contactSchema.statics.isUniqueEmail = async (email) => {
+    const contact = await Contact.findOne({ email });
+
+    if(contact) {
+      return false;
+    } else {
+      return true;
+    }
+};
+
+contactSchema.statics.isUniquePhone = async (phone) => {
+    const contact = await Contact.findOne({ phone });
+
+    if(contact) {
+      return false;
+    } else {
+      return true;
+    }
+};
+
 
 const Contact = mongoose.model('Contact', contactSchema)
 module.exports = Contact
