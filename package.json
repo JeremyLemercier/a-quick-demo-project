@@ -1,20 +1,20 @@
 {
-    "name": "a-quick-demo-project",
-    "version": "0.1.0",
-    "description": "This is a simple demo project",
-    "main": "index.js",
-    "scripts": {
-      "start": "node ./app/src/index.js",
-      "dev": "env-cmd -f ./config/dev.env node ./app/src/index.js",
-    },
-    "dependencies": {
-      "express": "^4.18.2",
-      "env-cmd": "^10.1.0",
-    },
-    "devDependencies": {
-      "env-cmd": "^10.1.0",
-    },
-    "author": "Jérémy Lemercier",
-    "license": "MIT"
-  }
+  "name": "a-quick-demo-project",
+  "version": "0.1.0",
+  "description": "This is a simple demo project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./app/src/index.js",
+    "dev": "env-cmd -f ./config/dev.env node ./app/src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "env-cmd": "^10.1.0"
+  },
+  "devDependencies": {
+    "env-cmd": "^10.1.0"
+  },
+  "author": "Jérémy Lemercier",
+  "license": "MIT"
+}
   
