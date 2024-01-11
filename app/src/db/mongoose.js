@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 const env = process.env.ENV; 
-const MONGO_URI = setEnvConfig();
-console.log('[LOG01 - mongoose.js] current URI : ' + MONGO_URI);
+let MONGO_URI = '';
 
 // Connection to MongoDB without Automated Tests
 async () => {
+    MONGO_URI = setEnvConfig();
     env !== 'ci' ? await connect(MONGO_URI) : null;
-    console.log('[LOG02 - mongoose.js] current URI : ' + MONGO_URI);
+    console.log('[LOG01 - mongoose.js] current URI : ' + MONGO_URI);
 }
 
 
