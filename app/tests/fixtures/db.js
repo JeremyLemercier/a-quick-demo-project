@@ -4,8 +4,7 @@ const env = process.env.ENV;
 const host = (env == 'ci') ? process.env.MONGO_HOST : process.env.MONGO_LOCAL_HOST
 const port = (env == 'ci') ? process.env.MONGO_PORT : process.env.MONGO_LOCAL_PORT
 
-console.log('[LOG - db.js - Value of env var MONGO_HOST : ' + host)
-console.log('[LOG - db.js - Value of env var MONGO_PORT : ' + port)
+console.log('[INFO] -- MONGO_HOST: ' + host + '\n' + '[INFO] -- MONGO_PORT: ' + port)
 
 function setMongoURI() {
     const uri = 'mongodb://'+ host + ':' + port + '/my-app';

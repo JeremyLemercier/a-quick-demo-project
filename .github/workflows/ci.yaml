@@ -1,19 +1,27 @@
 name: CI workflow
 run-name: CI for ${{ github.repository }}
 
-on: [push]
+on: 
+  push:
+    branches:
+      - develop
+      - 'release-*'
+  pull_request: 
+    branches:
+      - main
+      - develop
 
 jobs:
   job_Unit-Tests:
+    name: Roll up all the unit tests
     runs-on: ubuntu-latest
-    environment: TEST
+    environment: test
     container: node:21-alpine3.19
     services:
       mongo:
         image: mongo
         ports:
           - 27017:27017
-
     steps:
       - name: Checkout Source Code
         uses: actions/checkout@v4
@@ -31,9 +39,36 @@ jobs:
         run: npm ci
 
       - name: Roll-up the Unit Tests
+        if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/main'
         run: npm test
         env:
             ENV: ci
             MONGO_HOST: ${{ vars.MONGO_HOST }}
             MONGO_PORT: ${{ vars.MONGO_PORT }}
+      
+      - name: Roll-up the Unit Tests
+        if: startsWith(github.ref, 'refs/heads/release-')
+        run: npm run release-test --if-present
+        env:
+            ENV: ci
+            MONGO_HOST: ${{ vars.MONGO_HOST }}
+            MONGO_PORT: ${{ vars.MONGO_PORT }}
 
+  job_Build-Image:
+    name: Build Docker image of the app
+    runs-on: ubuntu-latest
+    environment: stagging
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+      
+      - name: Build docker image
+        run: docker build --target delivery -t hrm-app .
+    
+      - name: Test container
+        run: docker run --rm hrm-app
+      
+  # job_Publish-Image:
+  #   name: Push Docker image to GitHub Packages
+  #   runs-on: ubuntu-latest
+  #   ...
