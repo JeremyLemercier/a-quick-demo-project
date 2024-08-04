@@ -1,0 +1,37 @@
+name: Deploy to Amazon ECS
+
+on:
+  pull_request:
+    branches:
+      - main
+
+# env:
+#   ...
+
+jobs:
+    deploy:
+        name: Deploy
+        runs-on: ubuntu-latest
+        environment: production
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+              
+            - name: Greeting
+              run: echo "Hi, this pipeline is in progress..."
+        
+            # - name: Configure AWS credentials
+            #   ...
+
+            # - name: Login to Amazon ECR
+            #   ...
+            
+            # - name: Pull from Github Package, tag, and push image to Amazon ECR
+            #   ...
+
+            # - name: Fill in the new image ID in the Amazon ECS task definition
+            #   ...
+      
+            # - name: Deploy Amazon ECS task definition
+            #   ...

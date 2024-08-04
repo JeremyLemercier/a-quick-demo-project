@@ -1,20 +1,33 @@
 {
-    "name": "a-quick-demo-project",
-    "version": "0.1.0",
-    "description": "This is a simple demo project",
-    "main": "index.js",
-    "scripts": {
-      "start": "node ./app/src/index.js",
-      "dev": "env-cmd -f ./config/dev.env node ./app/src/index.js",
-    },
-    "dependencies": {
-      "express": "^4.18.2",
-      "env-cmd": "^10.1.0",
-    },
-    "devDependencies": {
-      "env-cmd": "^10.1.0",
-    },
-    "author": "Jérémy Lemercier",
-    "license": "MIT"
-  }
-  
+  "name": "quick-demo-project",
+  "version": "0.2.0",
+  "description": "This is a simple demo project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./app/src/index.js",
+    "dev": "env-cmd -f ./config/dev.env node ./app/src/index.js",
+    "local-test": "env-cmd -f ./config/test.env jest --detectOpenHandles --runInBand",
+    "test": "jest --detectOpenHandles --runInBand"
+  },
+  "keywords": [
+    "nodejs",
+    "api"
+  ],
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "env-cmd": "^10.1.0",
+    "mongoose": "^8.0.3",
+    "mongoose-beautiful-unique-validation": "^7.1.1",
+    "supertest": "^6.3.3",
+    "validator": "^13.0.0"
+  },
+  "devDependencies": {
+    "env-cmd": "^10.1.0",
+    "jest": "^29.7.0"
+  },
+  "author": "Jérémy Lemercier",
+  "license": "MIT"
+}
